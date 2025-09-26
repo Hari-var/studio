@@ -1,4 +1,4 @@
-import { Submission, Task } from "./types";
+import { Submission, Task, WorkItem } from "./types";
 
 function subtractDays(date: Date, days: number): Date {
   const result = new Date(date);
@@ -19,7 +19,7 @@ export const submissions: Submission[] = [
     effectiveDate: "07/24/2025",
     expiryDate: "07/24/2026",
     insuredName: "Giga Structures",
-    underwriter: "John Smith",
+    underwriter: "Bruce Wayne",
     status: "Booked",
     new: "New",
     producer: "AutomationProdu...",
@@ -32,7 +32,7 @@ export const submissions: Submission[] = [
     effectiveDate: "09/09/2025",
     expiryDate: "09/09/2026",
     insuredName: "Quantum Innovations",
-    underwriter: "Jane Doe",
+    underwriter: "Diana Prince",
     status: "Closed",
     new: "N",
     producer: "joel navarro",
@@ -45,7 +45,7 @@ export const submissions: Submission[] = [
     effectiveDate: "09/05/2025",
     expiryDate: "09/05/2026",
     insuredName: "Pioneer Logistics",
-    underwriter: "Peter Jones",
+    underwriter: "Clark Kent",
     status: "Closed",
     new: "N",
     producer: "joel navarro",
@@ -58,7 +58,7 @@ export const submissions: Submission[] = [
     effectiveDate: "09/05/2025",
     expiryDate: "09/06/2026",
     insuredName: "Apex Construction",
-    underwriter: "Mary Williams",
+    underwriter: "Barry Allen",
     status: "Declined",
     new: "N",
     producer: "joel navarro",
@@ -71,7 +71,7 @@ export const submissions: Submission[] = [
     effectiveDate: "09/05/2025",
     expiryDate: "09/05/2026",
     insuredName: "Blue-sky Enterprises",
-    underwriter: "David Brown",
+    underwriter: "Hal Jordan",
     status: "Closed",
     new: "N",
     producer: "joel navarro",
@@ -84,7 +84,7 @@ export const submissions: Submission[] = [
     effectiveDate: "09/04/2025",
     expiryDate: "09/04/2026",
     insuredName: "Starlight Solutions",
-    underwriter: "Susan Davis",
+    underwriter: "Arthur Curry",
     status: "Closed",
     new: "N",
     producer: "joel navarro",
@@ -97,7 +97,7 @@ export const submissions: Submission[] = [
     effectiveDate: "07/23/2025",
     expiryDate: "07/23/2026",
     insuredName: "Silverline Corp",
-    underwriter: "Michael Miller",
+    underwriter: "Victor Stone",
     status: "Under Review",
     new: "Submiss...",
     producer: "Automationprodu...",
@@ -110,7 +110,7 @@ export const submissions: Submission[] = [
     effectiveDate: "07/23/2025",
     expiryDate: "07/23/2026",
     insuredName: "Vertex Holdings",
-    underwriter: "Jennifer Wilson",
+    underwriter: "J'onn J'onzz",
     status: "Under Review",
     new: "Submiss...",
     producer: "Automationprodu...",
@@ -123,7 +123,7 @@ export const submissions: Submission[] = [
     effectiveDate: "07/22/2025",
     expiryDate: "07/22/2026",
     insuredName: "Momentum Inc",
-    underwriter: "Robert Moore",
+    underwriter: "Oliver Queen",
     status: "Declined",
     new: "Submiss...",
     producer: "Automationprodu...",
@@ -141,4 +141,11 @@ export const tasks: Task[] = [
     { id: "T6", submissionId: "S123456", taskType: "Quote", note: "Quote for Vertex Holdings", createdDate: "07/24/2025", dueDate: "07/29/2025", status: "To Do", tags: "", assignTo: "Jennifer Wilson", priority: "Medium" },
     { id: "T7", submissionId: "S234567", taskType: "Decline", note: "Send decline letter", createdDate: "07/23/2025", dueDate: "07/24/2025", status: "Done", tags: "", assignTo: "Robert Moore", priority: "Medium" },
     { id: "T8", submissionId: "S345821", taskType: "Bind", note: "Bind the policy", createdDate: "08/01/2025", dueDate: "08/05/2025", status: "To Do", tags: "purple", assignTo: "John Smith", priority: "High" },
+];
+
+export const workItems: WorkItem[] = [
+    { id: "W5350", owner: "Srinivasulu Bodicherla", type: "New Submission", priority: "Medium", gwpcStatus: "Declined", status: "WIP", indicated: false, automationStatus: "Not Applicable", exposureStatus: "New", submissionId: "S345821" },
+    { id: "W5351", owner: "Peter Parker", type: "Renewal", priority: "High", gwpcStatus: "Approved", status: "Done", indicated: true, automationStatus: "Complete", exposureStatus: "Renewed", submissionId: "S489234" },
+    { id: "W5352", owner: "Tony Stark", type: "Endorsement", priority: "Low", gwpcStatus: "Pending", status: "To Do", indicated: false, automationStatus: "In Progress", exposureStatus: "Endorsed", submissionId: "S512345" },
+    { id: "W5353", owner: "Steve Rogers", type: "New Submission", priority: "Medium", gwpcStatus: "Declined", status: "WIP", indicated: true, automationStatus: "Not Applicable", exposureStatus: "New", submissionId: "S678901" },
 ];

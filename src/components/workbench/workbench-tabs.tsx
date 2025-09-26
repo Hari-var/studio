@@ -7,11 +7,12 @@ import * as React from "react";
 
 interface WorkbenchTabsProps {
     onTasksClick: () => void;
+    activeTab: string;
+    setActiveTab: (tab: string) => void;
 }
 
-export function WorkbenchTabs({ onTasksClick }: WorkbenchTabsProps) {
-  const [activeTab, setActiveTab] = React.useState("My Submissions");
-  const tabs = ["My Submissions", "Tasks", "Subjectivities", "All Submissions"];
+export function WorkbenchTabs({ onTasksClick, activeTab, setActiveTab }: WorkbenchTabsProps) {
+  const tabs = ["My Submissions", "Work Items", "Tasks", "Subjectivities", "All Submissions"];
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
@@ -42,6 +43,9 @@ export function WorkbenchTabs({ onTasksClick }: WorkbenchTabsProps) {
             {tab}
             {tab === "My Submissions" && (
               <Badge variant="destructive" className="ml-2 bg-orange-500 text-white">9</Badge>
+            )}
+             {tab === "Work Items" && (
+              <Badge variant="destructive" className="ml-2 bg-blue-500 text-white">4</Badge>
             )}
           </button>
         ))}

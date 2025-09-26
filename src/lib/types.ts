@@ -24,3 +24,16 @@ export type Task = {
   assignTo: string;
   priority: 'High' | 'Medium' | 'Low';
 };
+
+export type WorkItem = {
+  id: string;
+  owner: string;
+  type: string;
+  priority: 'High' | 'Medium' | 'Low';
+  gwpcStatus: string;
+  status: string;
+  indicated: boolean;
+  automationStatus: string;
+  exposureStatus: string;
+  submissionId: string;
+};
