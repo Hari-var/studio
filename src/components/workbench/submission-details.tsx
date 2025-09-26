@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Submission } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Edit, Trash2, ExternalLink, ChevronsUpDown, ChevronDown } from "lucide-react";
