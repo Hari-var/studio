@@ -11,3 +11,16 @@ export type Submission = {
   producerInternal: string;
   project: 'Yes' | 'No';
 };
+
+export type Task = {
+  id: string;
+  submissionId: string;
+  taskType: string;
+  note: string;
+  createdDate: string;
+  dueDate: string;
+  status: 'To Do' | 'Done';
+  tags: string;
+  assignTo: string;
+  priority: 'High' | 'Medium' | 'Low';
+};

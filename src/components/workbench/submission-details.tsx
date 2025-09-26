@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Submission } from "@/lib/types";
+import { Submission, Task } from "@/lib/types";
+import { tasks as allTasks } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Edit, Trash2, ExternalLink, ChevronsUpDown, ChevronDown } from "lucide-react";
 import {
@@ -19,40 +20,6 @@ interface SubmissionDetailsProps {
   onBack: () => void;
 }
 
-const tasks = [
-  {
-    taskType: "Quote",
-    note: "",
-    createdDate: "8/13/2025",
-    dueDate: "10/9/2025",
-    status: "To Do",
-    tags: "",
-    assignTo: "Srinivasulu Bodicherla",
-    priority: "Medium",
-  },
-  {
-    taskType: "Bind",
-    note: "",
-    createdDate: "9/2/2025",
-    dueDate: "9/2/2025",
-    status: "To Do",
-    tags: "blue",
-    assignTo: "Saideep Kolukula",
-    priority: "Medium",
-  },
-  {
-    taskType: "Follow-up",
-    note: "",
-    createdDate: "9/15/2025",
-    dueDate: "9/20/2025",
-    status: "Done",
-    tags: "green",
-    assignTo: "Srinivasulu Bodicherla",
-    priority: "Low",
-  },
-];
-
-
 const InfoCard = ({ title, value }: { title: string, value: string | React.ReactNode }) => (
     <div>
         <p className="text-sm text-muted-foreground">{title}</p>
@@ -60,8 +27,22 @@ const InfoCard = ({ title, value }: { title: string, value: string | React.React
     </div>
 );
 
+const tagColors: { [key: string]: string } = {
+    red: 'bg-red-500',
+    blue: 'bg-blue-500',
+    green: 'bg-green-500',
+    orange: 'bg-orange-500',
+    purple: 'bg-purple-500',
+  };
+
 export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps) {
     const [activeTab, setActiveTab] = React.useState("Task");
+    const [tasks, setTasks] = React.useState<Task[]>([]);
+
+    React.useEffect(() => {
+        setTasks(allTasks.filter(t => t.submissionId === submission.id));
+    }, [submission.id]);
+
 
   return (
     <div className="bg-card p-6 rounded-lg shadow-sm">
@@ -152,14 +133,14 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                                         <TableRow className="font-semibold bg-gray-50">
                                             <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>To Do</TableCell>
                                         </TableRow>
-                                        {tasks.filter(t => t.status === 'To Do').map((task, index) => (
-                                            <TableRow key={`todo-${index}`}>
+                                        {tasks.filter(t => t.status === 'To Do').map((task) => (
+                                            <TableRow key={task.id}>
                                                 <TableCell>{task.taskType}</TableCell>
                                                 <TableCell>{task.note}</TableCell>
                                                 <TableCell>{task.createdDate}</TableCell>
                                                 <TableCell>{task.dueDate}</TableCell>
                                                 <TableCell>{task.status}</TableCell>
-                                                <TableCell>{task.tags && <div className={`h-3 w-3 rounded-full ${task.tags === 'blue' ? 'bg-blue-500' : ''}`}></div>}</TableCell>
+                                                <TableCell>{task.tags && <div className={`h-3 w-3 rounded-full ${tagColors[task.tags] || ''}`}></div>}</TableCell>
                                                 <TableCell>{task.assignTo}</TableCell>
                                                 <TableCell>{task.priority}</TableCell>
                                                 <TableCell>
@@ -173,14 +154,14 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                                          <TableRow className="font-semibold bg-gray-50">
                                             <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>Done</TableCell>
                                         </TableRow>
-                                        {tasks.filter(t => t.status === 'Done').map((task, index) => (
-                                            <TableRow key={`done-${index}`}>
+                                        {tasks.filter(t => t.status === 'Done').map((task) => (
+                                            <TableRow key={task.id}>
                                                 <TableCell>{task.taskType}</TableCell>
                                                 <TableCell>{task.note}</TableCell>
                                                 <TableCell>{task.createdDate}</TableCell>
                                                 <TableCell>{task.dueDate}</TableCell>
                                                 <TableCell>{task.status}</TableCell>
-                                                <TableCell>{task.tags && <div className={`h-3 w-3 rounded-full ${task.tags === 'green' ? 'bg-green-500' : ''}`}></div>}</TableCell>
+                                                <TableCell>{task.tags && <div className={`h-3 w-3 rounded-full ${tagColors[task.tags] || ''}`}></div>}</TableCell>
                                                 <TableCell>{task.assignTo}</TableCell>
                                                 <TableCell>{task.priority}</TableCell>
                                                 <TableCell>
