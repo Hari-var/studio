@@ -31,13 +31,14 @@ const prompt = ai.definePrompt({
   name: 'summarizeSelectedRowsPrompt',
   input: {schema: z.object({ rowsAsJson: z.string() })},
   output: {schema: SummarizeSelectedRowsOutputSchema},
-  prompt: `You are an expert AI assistant for P&C insurance underwriters. Your task is to summarize a selection of data table rows.
+  prompt: `You are an expert AI assistant for Cyber insurance underwriters. Your task is to summarize a selection of data table rows.
 
   Given the following selected rows, generate a concise summary highlighting key insights, trends, or potential red flags. The summary should be easy to read and formatted in markdown.
 
-  Focus on what an underwriter would find most important. For example:
-  - Are there any concentrations of risk (e.g., same producer, similar insureds)?
-  - Are there any submissions with a 'Declined' or 'Under Review' status that might need attention?
+  Focus on what a cyber underwriter would find most important. For example:
+  - Is there a concentration of risk in a specific industry or with a single software vendor?
+  - Are there any submissions that lack MFA (Multi-Factor Authentication)?
+  - Are there any submissions with a 'Declined' or 'Under Review' status that might need immediate attention?
   - What is the general mix of new vs. renewal business?
 
   Selected Rows:

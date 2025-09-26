@@ -9,7 +9,7 @@ export type Submission = {
   new: string;
   producer: string;
   producerInternal: string;
-  project: 'Yes' | 'No';
+  mfaEnforced: 'Yes' | 'No';
 };
 
 export type Task = {

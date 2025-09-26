@@ -76,7 +76,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                 {/* Submission Info */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <InfoCard title="Submission #" value={submission.id} />
-                    <InfoCard title="Renewals" value="No" />
+                    <InfoCard title="MFA Enforced" value={submission.mfaEnforced} />
                     <InfoCard title="GWPC Status" value={<Badge variant={submission.status === 'Booked' ? 'success' : 'default'}>{submission.status}</Badge>} />
                     <div></div>
                     <div>
@@ -116,7 +116,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                             </div>
                             <div className="border rounded-md">
                                 <Table>
-                                    <TableHeader className="bg-muted/50">
+                                    <TableHeader className="bg-muted">
                                         <TableRow>
                                             <TableHead>TASK TYPE</TableHead>
                                             <TableHead>NOTE</TableHead>
@@ -130,7 +130,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        <TableRow className="font-semibold bg-muted/50">
+                                        <TableRow className="font-semibold bg-muted">
                                             <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>To Do</TableCell>
                                         </TableRow>
                                         {tasks.filter(t => t.status === 'To Do').map((task) => (
@@ -151,7 +151,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                                                 </TableCell>
                                             </TableRow>
                                         ))}
-                                         <TableRow className="font-semibold bg-muted/50">
+                                         <TableRow className="font-semibold bg-muted">
                                             <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>Done</TableCell>
                                         </TableRow>
                                         {tasks.filter(t => t.status === 'Done').map((task) => (

@@ -87,13 +87,13 @@ export function PortfolioManagement() {
             <Calendar className="h-4 w-4" />
             <span>14/06/2024 - 14/01/2025</span>
           </Button>
-          <Select defaultValue="professional-indemnity">
+          <Select defaultValue="cyber">
             <SelectTrigger className="w-[200px]">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="professional-indemnity">
-                Professional Indemnity
+              <SelectItem value="cyber">
+                Cyber
               </SelectItem>
             </SelectContent>
           </Select>

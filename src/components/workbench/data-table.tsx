@@ -100,7 +100,7 @@ export function DataTable<TData, TValue>({
        <DataTableToolbar table={table} onSummarize={onSummarize} />
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="bg-muted/50">
+          <TableHeader className="bg-muted">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -132,7 +132,7 @@ export function DataTable<TData, TValue>({
                     key={row.id}
                     data-state={isSelected && "selected"}
                     className={cn(
-                      'data-[state=selected]:bg-accent/30'
+                      'data-[state=selected]:bg-accent'
                     )}
                   >
                     {row.getVisibleCells().map((cell) => (

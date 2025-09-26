@@ -34,10 +34,10 @@ interface AddTaskSheetProps {
 }
 
 const taskHistory = [
-    { transactionDate: '12/05/2025 4:45 AM', assignedTo: 'John Smith', assignedBy: 'Sarah Johnson', dueDate: '12/15/2025', status: 'In Progress', taskType: 'Review Documents', priority: 'High' },
-    { transactionDate: '12/04/2025 2:30 PM', assignedTo: 'Emily Davis', assignedBy: 'Michael Brown', dueDate: '12/12/2025', status: 'Completed', taskType: 'Data Entry', priority: 'Medium' },
-    { transactionDate: '12/03/2025 9:15 AM', assignedTo: 'Robert Wilson', assignedBy: 'Lisa Anderson', dueDate: '12/10/2025', status: 'Pending', taskType: 'Quality Check', priority: 'Low' },
-    { transactionDate: '12/02/2025 11:20 AM', assignedTo: 'Jennifer Taylor', assignedBy: 'David Martinez', dueDate: '12/08/2025', status: 'In Progress', taskType: 'Risk Assessment', priority: 'High' },
+    { transactionDate: '12/05/2025 4:45 AM', assignedTo: 'John Smith', assignedBy: 'Sarah Johnson', dueDate: '12/15/2025', status: 'In Progress', taskType: 'Review SOC 2 Report', priority: 'High' },
+    { transactionDate: '12/04/2025 2:30 PM', assignedTo: 'Emily Davis', assignedBy: 'Michael Brown', dueDate: '12/12/2025', status: 'Completed', taskType: 'Analyze Vulnerability Scan', priority: 'Medium' },
+    { transactionDate: '12/03/2025 9:15 AM', assignedTo: 'Robert Wilson', assignedBy: 'Lisa Anderson', dueDate: '12/10/2025', status: 'Pending', taskType: 'Check for MFA implementation', priority: 'Low' },
+    { transactionDate: '12/02/2025 11:20 AM', assignedTo: 'Jennifer Taylor', assignedBy: 'David Martinez', dueDate: '12/08/2025', status: 'In Progress', taskType: 'Ransomware Exposure Review', priority: 'High' },
     { transactionDate: '12/01/2025 3:45 PM', assignedTo: 'Christopher Lee', assignedBy: 'Amanda White', dueDate: '12/06/2025', status: 'Completed', taskType: 'Documentation', priority: 'Medium' },
 ]
 
@@ -46,7 +46,7 @@ export function AddTaskSheet({ isOpen, onOpenChange }: AddTaskSheetProps) {
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="max-w-4xl w-full sm:max-w-4xl" side="right">
         <SheetHeader>
-          <SheetTitle>Add Task - Superman</SheetTitle>
+          <SheetTitle>Add Task - CyberSec Solutions</SheetTitle>
         </SheetHeader>
         <div className="py-4">
         <Tabs defaultValue="task-history">
@@ -66,7 +66,7 @@ export function AddTaskSheet({ isOpen, onOpenChange }: AddTaskSheetProps) {
                 </div>
                 <div className="border rounded-md">
                 <Table>
-                    <TableHeader className="bg-slate-50">
+                    <TableHeader className="bg-muted">
                         <TableRow>
                             <TableHead>TRANSACTION DATE</TableHead>
                             <TableHead>ASSIGNED TO</TableHead>
@@ -115,7 +115,7 @@ export function AddTaskSheet({ isOpen, onOpenChange }: AddTaskSheetProps) {
         </div>
         <SheetFooter>
             <Button variant="outline">Cancel</Button>
-            <Button className="bg-primary hover:bg-primary/90">Add Task</Button>
+            <Button>Add Task</Button>
         </SheetFooter>
       </SheetContent>
     </Sheet>

@@ -43,9 +43,9 @@ const InfoCard = ({
 
 const SideNavItem = ({ icon, label, status, isActive = false, isSubItem = false, children }: any) => (
     <div className={isSubItem ? "pl-6" : ""}>
-        <div className={`flex items-center p-2 rounded-md cursor-pointer ${isActive ? 'bg-accent/20 text-accent-foreground' : 'hover:bg-muted'}`}>
+        <div className={`flex items-center p-2 rounded-md cursor-pointer ${isActive ? 'bg-accent text-accent-foreground' : 'hover:bg-muted'}`}>
             {status === 'completed' && <Check className="h-4 w-4 text-green-500 mr-2" />}
-            {status === 'inprogress' && <Circle className="h-4 w-4 text-blue-500 mr-2" />}
+            {status === 'inprogress' && <Circle className="h-4 w-4 text-primary mr-2" />}
             {status === 'pending' && <div className="h-4 w-4 border-2 border-muted-foreground rounded-full mr-2" />}
             <span className="flex-1 text-sm">{label}</span>
         </div>

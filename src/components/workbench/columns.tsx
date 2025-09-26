@@ -92,8 +92,8 @@ export const getColumns = (
     header: "Producer Internal",
   },
   {
-    accessorKey: "project",
-    header: "Project",
+    accessorKey: "mfaEnforced",
+    header: "MFA Enforced",
   },
   {
     id: "actions",
