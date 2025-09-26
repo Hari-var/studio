@@ -25,6 +25,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
+import { Dashboard } from "./dashboard";
 
 const subjectivitiesData = [
   { id: 'SUBJ-001', submission: 'S345821', type: 'Inspection', status: 'Pending', dueDate: '08/15/2025' },
@@ -189,6 +190,9 @@ export function WorkbenchClient() {
         )}
         {activeTab === 'Portfolio Management' && (
           <PortfolioManagement />
+        )}
+        {activeTab === 'Dashboard' && (
+          <Dashboard />
         )}
         <AddTaskSheet isOpen={isSheetOpen} onOpenChange={setIsSheetOpen} />
          <AlertDialog open={isSummaryDialogOpen} onOpenChange={setIsSummaryDialogOpen}>
