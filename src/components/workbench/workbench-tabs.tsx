@@ -12,7 +12,7 @@ interface WorkbenchTabsProps {
 }
 
 export function WorkbenchTabs({ onTasksClick, activeTab, setActiveTab }: WorkbenchTabsProps) {
-  const tabs = ["My Submissions", "Work Items", "Tasks", "Subjectivities", "All Submissions"];
+  const tabs = ["My Submissions", "Work Items", "Tasks", "Subjectivities", "All Submissions", "Portfolio Management"];
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);

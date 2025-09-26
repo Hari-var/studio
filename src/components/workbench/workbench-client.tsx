@@ -11,6 +11,7 @@ import { WorkbenchTabs } from "@/components/workbench/workbench-tabs";
 import { AddTaskSheet } from "@/components/workbench/add-task-sheet";
 import { SubmissionDetails } from "@/components/workbench/submission-details";
 import { WorkItemDetails } from "@/components/workbench/work-item-details";
+import { PortfolioManagement } from "@/components/workbench/portfolio-management";
 
 export function WorkbenchClient() {
   const [submissions] = React.useState<Submission[]>(defaultSubmissions);
@@ -90,6 +91,9 @@ export function WorkbenchClient() {
             setRowSelection={setRowSelection}
             setTable={(t) => (workItemTableRef = t)}
           />
+        )}
+        {activeTab === 'Portfolio Management' && (
+          <PortfolioManagement />
         )}
         <AddTaskSheet isOpen={isSheetOpen} onOpenChange={setIsSheetOpen} />
       </main>
