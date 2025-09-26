@@ -28,7 +28,7 @@ import {
   
   const requirementsData = [
     { name: 'Attending P...', value: 32 },
-    { name: 'Blood Profile &amp; Urine Speci...', value: 41 },
+    { name: 'Blood Profile & Urine Speci...', value: 41 },
     { name: 'Examination By Medical Doctor (MD)', value: 42 },
     { name: 'Financial / Credit Check', value: 2 },
     { name: 'Motor Vehicle Report', value: 1 },
@@ -40,7 +40,7 @@ import {
     { name: 'Variable Universal Life', value: 16 },
     { name: 'Whole Life', value: 9 },
   ];
-  const productTypeColors = ['#003f5c', '#58508d', '#bc5090', '#ff6361'];
+  const productTypeColors = ['#2c3e50', '#3498db', '#9b59b6', '#e74c3c'];
   
   const caseStatusData = [
     { name: 'Pending', value: 18 },
@@ -189,7 +189,7 @@ import {
                   <XAxis type="number" />
                   <YAxis dataKey="name" type="category" width={60} tick={{fontSize: 12}} />
                   <Tooltip />
-                  <Bar dataKey="value" fill="#ff7c43" barSize={30} />
+                  <Bar dataKey="value" fill="hsl(var(--primary))" barSize={30} />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
