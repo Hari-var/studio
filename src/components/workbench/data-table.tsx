@@ -14,6 +14,7 @@ import {
   useReactTable,
   Table as TanstackTable,
   RowSelectionState,
+  Header,
 } from "@tanstack/react-table";
 
 import {
@@ -29,6 +30,7 @@ import { DataTableToolbar } from "./data-table-toolbar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Submission } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,6 +38,25 @@ interface DataTableProps<TData, TValue> {
   rowSelection: RowSelectionState;
   setRowSelection: React.Dispatch<React.SetStateAction<RowSelectionState>>;
   setTable: (table: TanstackTable<TData>) => void;
+}
+
+function Filter({
+  header,
+}: {
+  header: Header<Submission, unknown>;
+}) {
+  const canFilter = header.column.getCanFilter();
+
+  return canFilter ? (
+    <div>
+      <Input
+        placeholder={`Filter by ${header.column.id}`}
+        value={(header.column.getFilterValue() as string) ?? ""}
+        onChange={(e) => header.column.setFilterValue(e.target.value)}
+        className="h-8 py-1 text-xs"
+      />
+    </div>
+  ) : null;
 }
 
 export function DataTable<TData, TValue>({
@@ -74,73 +95,69 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <Card>
-        <CardContent className="p-4">
-          <DataTableToolbar table={table} />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent className="p-0">
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <TableRow key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => {
-                      return (
-                        <TableHead key={header.id}>
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
-                        </TableHead>
-                      );
-                    })}
-                  </TableRow>
-                ))}
-              </TableHeader>
-              <TableBody>
-                {table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row) => {
-                    const submission = row.original as Submission;
-                    const isOverdue = submission.status === 'Overdue';
-                    return (
-                      <TableRow
-                        key={row.id}
-                        data-state={row.getIsSelected() && "selected"}
-                        className={cn(
-                          'data-[state=selected]:bg-accent',
-                          isOverdue && 'bg-destructive/10 border-l-4 border-destructive hover:bg-destructive/20'
+       <DataTableToolbar table={table} />
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader className="bg-slate-50">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id} className="p-2">
+                       <div className="flex flex-col gap-1">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                           {header.column.getCanFilter() ? (
+                            <Filter header={header as any} />
+                          ) : null}
+                      </div>
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => {
+                const isSelected = row.getIsSelected();
+                return (
+                  <TableRow
+                    key={row.id}
+                    data-state={isSelected && "selected"}
+                    className={cn(
+                      'data-[state=selected]:bg-accent',
+                      isSelected && 'bg-orange-100'
+                    )}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id} className="p-2">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
                         )}
-                      >
-                        {row.getVisibleCells().map((cell) => (
-                          <TableCell key={cell.id}>
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
-                          </TableCell>
-                        ))}
-                      </TableRow>
-                    );
-                  })
-                ) : (
-                  <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="h-24 text-center"
-                    >
-                      No results.
-                    </TableCell>
+                      </TableCell>
+                    ))}
                   </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
+                );
+              })
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
       <DataTablePagination table={table} />
     </div>
   );

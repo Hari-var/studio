@@ -1,14 +1,19 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
+import { MoreHorizontal } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Submission } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
-import { DataTableRowActions } from "./data-table-row-actions";
-import { cn } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Submission } from "@/lib/types";
 
 export const columns: ColumnDef<Submission>[] = [
   {
@@ -35,58 +40,24 @@ export const columns: ColumnDef<Submission>[] = [
   },
   {
     accessorKey: "id",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Submission ID
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: "SU #",
+    cell: ({ row }) => <div className="text-primary">{row.getValue("id")}</div>,
+  },
+  {
+    accessorKey: "taskPending",
+    header: "Task Pending",
+  },
+  {
+    accessorKey: "effectiveDate",
+    header: "Effective Date",
+  },
+  {
+    accessorKey: "expiryDate",
+    header: "Expiry Date",
   },
   {
     accessorKey: "insuredName",
-    header: "Insured Name",
-  },
-  {
-    accessorKey: "lob",
-    header: "LOB",
-  },
-  {
-    accessorKey: "state",
-    header: "State",
-  },
-  {
-    accessorKey: "premium",
-    header: ({ column }) => {
-      return (
-        <div className="text-right">
-            <Button
-              variant="ghost"
-              onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            >
-              Premium
-              <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-        </div>
-      );
-    },
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("premium"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "dueDate",
-    header: "Due Date",
+    header: "Named Insured",
   },
   {
     accessorKey: "underwriter",
@@ -94,24 +65,50 @@ export const columns: ColumnDef<Submission>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => {
-      const status = row.getValue("status") as string;
-      const variant: "default" | "secondary" | "destructive" | "outline" | "success" =
-        status === "Bound"
-          ? "success"
-          : status === "Quoted"
-          ? "default"
-          : status === "Overdue"
-          ? "destructive"
-          : status === "New"
-          ? "secondary"
-          : "outline";
-      return <Badge variant={variant}>{status}</Badge>;
-    },
+    header: "GWPC Status",
+  },
+  {
+    accessorKey: "new",
+    header: "New/Ren",
+  },
+  {
+    accessorKey: "producer",
+    header: "Producer",
+  },
+  {
+    accessorKey: "producerInternal",
+    header: "Producer Internal",
+  },
+  {
+    accessorKey: "project",
+    header: "Project",
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => {
+      const submission = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(submission.id)}
+            >
+              Copy submission ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>View submission</DropdownMenuItem>
+            <DropdownMenuItem>View details</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
   },
 ];

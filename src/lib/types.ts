@@ -1,10 +1,13 @@
 export type Submission = {
   id: string;
+  taskPending: 'Yes' | 'No';
+  effectiveDate: string;
+  expiryDate: string;
   insuredName: string;
-  lob: 'General Liability' | 'Commercial Auto' | 'Workers Compensation' | 'Commercial Property';
-  state: string;
-  premium: number;
-  dueDate: string;
   underwriter: string;
-  status: 'New' | 'Quoted' | 'Bound' | 'Declined' | 'Overdue';
+  status: string;
+  new: string;
+  producer: string;
+  producerInternal: string;
+  project: 'Yes' | 'No';
 };
