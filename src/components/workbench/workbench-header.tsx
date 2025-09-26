@@ -1,18 +1,5 @@
-import { Home } from "lucide-react";
-
 export function WorkbenchHeader() {
-  const navItems = [
-    { name: "Hub", icon: Home },
-    { name: "Ops Workbench" },
-    { name: "Claims Workbench" },
-    { name: "Account" },
-    { name: "Submission" },
-    { name: "Producer" },
-    { name: "Form Library" },
-    { name: "Admin" },
-    { name: "UW Workbench", active: true },
-    { name: "Excess Casualty Workbench" },
-  ];
+  const navItems = [{ name: "UW Workbench", active: true }];
 
   return (
     <header className="bg-white shadow-md">

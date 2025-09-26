@@ -14,11 +14,11 @@ function formatDate(date: Date): string {
 
 export const submissions: Submission[] = [
   {
-    id: "S216946",
+    id: "S345821",
     taskPending: "Yes",
     effectiveDate: "07/24/2025",
     expiryDate: "07/24/2026",
-    insuredName: "Superman",
+    insuredName: "Giga Structures",
     underwriter: "John Smith",
     status: "Booked",
     new: "New",
@@ -27,11 +27,11 @@ export const submissions: Submission[] = [
     project: "Yes"
   },
   {
-    id: "S1117195",
+    id: "S489234",
     taskPending: "Yes",
     effectiveDate: "09/09/2025",
     expiryDate: "09/09/2026",
-    insuredName: "joel_test_for_5_ac...",
+    insuredName: "Quantum Innovations",
     underwriter: "Jane Doe",
     status: "Closed",
     new: "N",
@@ -40,11 +40,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1117136",
+    id: "S512345",
     taskPending: "Yes",
     effectiveDate: "09/05/2025",
     expiryDate: "09/05/2026",
-    insuredName: "joel_test_account...",
+    insuredName: "Pioneer Logistics",
     underwriter: "Peter Jones",
     status: "Closed",
     new: "N",
@@ -53,11 +53,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1117134",
+    id: "S678901",
     taskPending: "No",
     effectiveDate: "09/05/2025",
     expiryDate: "09/06/2026",
-    insuredName: "joel_test_account...",
+    insuredName: "Apex Construction",
     underwriter: "Mary Williams",
     status: "Declined",
     new: "N",
@@ -66,11 +66,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1117130",
+    id: "S789012",
     taskPending: "No",
     effectiveDate: "09/05/2025",
     expiryDate: "09/05/2026",
-    insuredName: "joel_test_accoun...",
+    insuredName: "Blue-sky Enterprises",
     underwriter: "David Brown",
     status: "Closed",
     new: "N",
@@ -79,11 +79,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1117100",
+    id: "S890123",
     taskPending: "No",
     effectiveDate: "09/04/2025",
     expiryDate: "09/04/2026",
-    insuredName: "joel_test_account...",
+    insuredName: "Starlight Solutions",
     underwriter: "Susan Davis",
     status: "Closed",
     new: "N",
@@ -92,11 +92,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1116273",
+    id: "S901234",
     taskPending: "Yes",
     effectiveDate: "07/23/2025",
     expiryDate: "07/23/2026",
-    insuredName: "teststst91010",
+    insuredName: "Silverline Corp",
     underwriter: "Michael Miller",
     status: "Under Review",
     new: "Submiss...",
@@ -105,11 +105,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1116271",
+    id: "S123456",
     taskPending: "Yes",
     effectiveDate: "07/23/2025",
     expiryDate: "07/23/2026",
-    insuredName: "askrealty8972",
+    insuredName: "Vertex Holdings",
     underwriter: "Jennifer Wilson",
     status: "Under Review",
     new: "Submiss...",
@@ -118,11 +118,11 @@ export const submissions: Submission[] = [
     project: "No"
   },
   {
-    id: "S1116239",
+    id: "S234567",
     taskPending: "Yes",
     effectiveDate: "07/22/2025",
     expiryDate: "07/22/2026",
-    insuredName: "askrealty123",
+    insuredName: "Momentum Inc",
     underwriter: "Robert Moore",
     status: "Declined",
     new: "Submiss...",
