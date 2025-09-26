@@ -29,7 +29,7 @@ export async function summarizeSelectedRows(input: SummarizeSelectedRowsInput): 
 
 const prompt = ai.definePrompt({
   name: 'summarizeSelectedRowsPrompt',
-  input: {schema: SummarizeSelectedRowsInputSchema},
+  input: {schema: z.object({ rowsAsJson: z.string() })},
   output: {schema: SummarizeSelectedRowsOutputSchema},
   prompt: `You are an expert AI assistant for P&C insurance underwriters. Your task is to summarize a selection of data table rows.
 
@@ -42,7 +42,7 @@ const prompt = ai.definePrompt({
 
   Selected Rows:
   \`\`\`json
-  {{{jsonStringify rows}}}
+  {{{rowsAsJson}}}
   \`\`\`
 
   Generate a summary in markdown format:`,
@@ -54,8 +54,8 @@ const summarizeSelectedRowsFlow = ai.defineFlow(
     inputSchema: SummarizeSelectedRowsInputSchema,
     outputSchema: SummarizeSelectedRowsOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
+  async ({ rows }) => {
+    const {output} = await prompt({ rowsAsJson: JSON.stringify(rows, null, 2) });
     return output!;
   }
 );
