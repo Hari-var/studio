@@ -144,7 +144,7 @@ export const tasks: Task[] = [
 ];
 
 export const workItems: WorkItem[] = [
-    { id: "W5350", owner: "Srinivasulu Bodicherla", type: "New Submission", priority: "Medium", gwpcStatus: "Declined", status: "WIP", indicated: false, automationStatus: "Not Applicable", exposureStatus: "New", submissionId: "S345821" },
+    { id: "W5350", owner: "Natasha Romanoff", type: "New Submission", priority: "Medium", gwpcStatus: "Declined", status: "WIP", indicated: false, automationStatus: "Not Applicable", exposureStatus: "New", submissionId: "S345821" },
     { id: "W5351", owner: "Peter Parker", type: "Renewal", priority: "High", gwpcStatus: "Approved", status: "Done", indicated: true, automationStatus: "Complete", exposureStatus: "Renewed", submissionId: "S489234" },
     { id: "W5352", owner: "Tony Stark", type: "Endorsement", priority: "Low", gwpcStatus: "Pending", status: "To Do", indicated: false, automationStatus: "In Progress", exposureStatus: "Endorsed", submissionId: "S512345" },
     { id: "W5353", owner: "Steve Rogers", type: "New Submission", priority: "Medium", gwpcStatus: "Declined", status: "WIP", indicated: true, automationStatus: "Not Applicable", exposureStatus: "New", submissionId: "S678901" },
