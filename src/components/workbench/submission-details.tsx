@@ -23,7 +23,7 @@ interface SubmissionDetailsProps {
 const InfoCard = ({ title, value }: { title: string, value: string | React.ReactNode }) => (
     <div>
         <p className="text-sm text-muted-foreground">{title}</p>
-        <p className="font-semibold">{value}</p>
+        <div className="font-semibold">{value}</div>
     </div>
 );
 
