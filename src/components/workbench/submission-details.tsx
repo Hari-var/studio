@@ -1,0 +1,208 @@
+"use client";
+
+import { Submission } from "@/lib/types";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Edit, Trash2, ExternalLink, ChevronsUpDown, ChevronDown } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+
+interface SubmissionDetailsProps {
+  submission: Submission;
+  onBack: () => void;
+}
+
+const tasks = [
+  {
+    taskType: "Quote",
+    note: "",
+    createdDate: "8/13/2025",
+    dueDate: "10/9/2025",
+    status: "To Do",
+    tags: "",
+    assignTo: "Srinivasulu Bodicherla",
+    priority: "Medium",
+  },
+  {
+    taskType: "Bind",
+    note: "",
+    createdDate: "9/2/2025",
+    dueDate: "9/2/2025",
+    status: "To Do",
+    tags: "blue",
+    assignTo: "Saideep Kolukula",
+    priority: "Medium",
+  },
+  {
+    taskType: "Follow-up",
+    note: "",
+    createdDate: "9/15/2025",
+    dueDate: "9/20/2025",
+    status: "Done",
+    tags: "green",
+    assignTo: "Srinivasulu Bodicherla",
+    priority: "Low",
+  },
+];
+
+
+const InfoCard = ({ title, value }: { title: string, value: string | React.ReactNode }) => (
+    <div>
+        <p className="text-sm text-muted-foreground">{title}</p>
+        <p className="font-semibold">{value}</p>
+    </div>
+);
+
+export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps) {
+    const [activeTab, setActiveTab] = React.useState("Task");
+
+  return (
+    <div className="bg-card p-6 rounded-lg shadow-sm">
+        {/* Header */}
+        <div className="flex justify-between items-center pb-4 border-b">
+            <div className="flex items-center gap-4">
+                <Button variant="ghost" size="icon" onClick={onBack}>
+                    <ArrowLeft className="h-5 w-5" />
+                </Button>
+                <div className="text-sm text-muted-foreground">
+                    Back <span className="text-primary">Submission number | {submission.id}</span>
+                </div>
+            </div>
+            <div className="flex items-center gap-2">
+                <Button variant="outline">Guidewire <ExternalLink className="h-4 w-4 ml-2" /></Button>
+                <Button variant="outline">ImageRight <ExternalLink className="h-4 w-4 ml-2" /></Button>
+            </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex pt-6">
+            {/* Left Actions Panel */}
+            <div className="w-48 pr-6">
+                <Button className="w-full justify-between bg-gray-700 hover:bg-gray-800 text-white">
+                    Actions <ChevronsUpDown className="h-4 w-4" />
+                </Button>
+            </div>
+
+            {/* Right Details Panel */}
+            <div className="flex-1">
+                {/* Submission Info */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <InfoCard title="Submission #" value={submission.id} />
+                    <InfoCard title="Renewals" value="No" />
+                    <InfoCard title="GWPC Status" value={<Badge variant={submission.status === 'Booked' ? 'success' : 'default'}>{submission.status}</Badge>} />
+                    <div></div>
+                    <div>
+                        <p className="text-sm text-muted-foreground">Account</p>
+                        <p className="font-semibold text-lg">A215743</p>
+                        <p className="font-semibold">{submission.insuredName}</p>
+                        <p className="text-sm">Karl, EIB5</p>
+                        <p className="text-sm">Krypto IA 45654 United States</p>
+                    </div>
+                    <InfoCard title="Prior Year Submission" value="-" />
+                    <InfoCard title="Policy Number / Policy Source" value="531881K / PolicyCenter" />
+                </div>
+                
+                {/* Tabs */}
+                <div className="mt-8">
+                    <div className="flex border-b">
+                        <button 
+                            className={`px-4 py-2 text-sm font-medium ${activeTab === 'Submission' ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
+                            onClick={() => setActiveTab('Submission')}
+                        >
+                            Submission
+                        </button>
+                        <button 
+                            className={`px-4 py-2 text-sm font-medium ${activeTab === 'Task' ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
+                            onClick={() => setActiveTab('Task')}
+                        >
+                            Task
+                        </button>
+                    </div>
+
+                    {/* Task Tab Content */}
+                    {activeTab === 'Task' && (
+                        <div className="pt-4">
+                            <div className="flex justify-between items-center mb-4">
+                                <h3 className="text-lg font-semibold">Task</h3>
+                                <Button>Add Task</Button>
+                            </div>
+                            <div className="border rounded-md">
+                                <Table>
+                                    <TableHeader className="bg-gray-50">
+                                        <TableRow>
+                                            <TableHead>TASK TYPE</TableHead>
+                                            <TableHead>NOTE</TableHead>
+                                            <TableHead>CREATED DATE</TableHead>
+                                            <TableHead>DUE DATE</TableHead>
+                                            <TableHead>STATUS</TableHead>
+                                            <TableHead>TAGS</TableHead>
+                                            <TableHead>ASSIGN TO</TableHead>
+                                            <TableHead>PRIORITY</TableHead>
+                                            <TableHead>ACTION</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableRow className="font-semibold bg-gray-50">
+                                            <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>To Do</TableCell>
+                                        </TableRow>
+                                        {tasks.filter(t => t.status === 'To Do').map((task, index) => (
+                                            <TableRow key={`todo-${index}`}>
+                                                <TableCell>{task.taskType}</TableCell>
+                                                <TableCell>{task.note}</TableCell>
+                                                <TableCell>{task.createdDate}</TableCell>
+                                                <TableCell>{task.dueDate}</TableCell>
+                                                <TableCell>{task.status}</TableCell>
+                                                <TableCell>{task.tags && <div className={`h-3 w-3 rounded-full ${task.tags === 'blue' ? 'bg-blue-500' : ''}`}></div>}</TableCell>
+                                                <TableCell>{task.assignTo}</TableCell>
+                                                <TableCell>{task.priority}</TableCell>
+                                                <TableCell>
+                                                    <div className="flex gap-2">
+                                                        <Button variant="ghost" size="icon"><Edit className="h-4 w-4"/></Button>
+                                                        <Button variant="ghost" size="icon"><Trash2 className="h-4 w-4"/></Button>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                         <TableRow className="font-semibold bg-gray-50">
+                                            <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>Done</TableCell>
+                                        </TableRow>
+                                        {tasks.filter(t => t.status === 'Done').map((task, index) => (
+                                            <TableRow key={`done-${index}`}>
+                                                <TableCell>{task.taskType}</TableCell>
+                                                <TableCell>{task.note}</TableCell>
+                                                <TableCell>{task.createdDate}</TableCell>
+                                                <TableCell>{task.dueDate}</TableCell>
+                                                <TableCell>{task.status}</TableCell>
+                                                <TableCell>{task.tags && <div className={`h-3 w-3 rounded-full ${task.tags === 'green' ? 'bg-green-500' : ''}`}></div>}</TableCell>
+                                                <TableCell>{task.assignTo}</TableCell>
+                                                <TableCell>{task.priority}</TableCell>
+                                                <TableCell>
+                                                    <div className="flex gap-2">
+                                                        <Button variant="ghost" size="icon"><Edit className="h-4 w-4"/></Button>
+                                                        <Button variant="ghost" size="icon"><Trash2 className="h-4 w-4"/></Button>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
+                        </div>
+                    )}
+                     {activeTab === 'Submission' && (
+                        <div className="pt-4 text-center text-muted-foreground">
+                            Submission details would be displayed here.
+                        </div>
+                     )}
+                </div>
+            </div>
+        </div>
+    </div>
+  );
+}

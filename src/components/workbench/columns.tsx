@@ -15,7 +15,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Submission } from "@/lib/types";
 
-export const columns: ColumnDef<Submission>[] = [
+export const getColumns = (
+  onViewSubmission: (submission: Submission) => void
+): ColumnDef<Submission>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -41,7 +43,17 @@ export const columns: ColumnDef<Submission>[] = [
   {
     accessorKey: "id",
     header: "SU #",
-    cell: ({ row }) => <div className="text-primary">{row.getValue("id")}</div>,
+    cell: ({ row }) => {
+      const submission = row.original;
+      return (
+        <button
+          onClick={() => onViewSubmission(submission)}
+          className="text-primary hover:underline"
+        >
+          {row.getValue("id")}
+        </button>
+      );
+    },
   },
   {
     accessorKey: "taskPending",
@@ -104,7 +116,9 @@ export const columns: ColumnDef<Submission>[] = [
               Copy submission ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View submission</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onViewSubmission(submission)}>
+              View submission
+            </DropdownMenuItem>
             <DropdownMenuItem>View details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
