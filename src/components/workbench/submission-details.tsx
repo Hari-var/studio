@@ -66,7 +66,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
         <div className="flex pt-6">
             {/* Left Actions Panel */}
             <div className="w-48 pr-6">
-                <Button className="w-full justify-between bg-gray-700 hover:bg-gray-800 text-white">
+                <Button className="w-full justify-between bg-secondary hover:bg-secondary/80 text-secondary-foreground">
                     Actions <ChevronsUpDown className="h-4 w-4" />
                 </Button>
             </div>
@@ -116,7 +116,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                             </div>
                             <div className="border rounded-md">
                                 <Table>
-                                    <TableHeader className="bg-gray-50">
+                                    <TableHeader className="bg-muted/50">
                                         <TableRow>
                                             <TableHead>TASK TYPE</TableHead>
                                             <TableHead>NOTE</TableHead>
@@ -130,7 +130,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        <TableRow className="font-semibold bg-gray-50">
+                                        <TableRow className="font-semibold bg-muted/50">
                                             <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>To Do</TableCell>
                                         </TableRow>
                                         {tasks.filter(t => t.status === 'To Do').map((task) => (
@@ -151,7 +151,7 @@ export function SubmissionDetails({ submission, onBack }: SubmissionDetailsProps
                                                 </TableCell>
                                             </TableRow>
                                         ))}
-                                         <TableRow className="font-semibold bg-gray-50">
+                                         <TableRow className="font-semibold bg-muted/50">
                                             <TableCell colSpan={9}><ChevronDown className="inline h-4 w-4 mr-2"/>Done</TableCell>
                                         </TableRow>
                                         {tasks.filter(t => t.status === 'Done').map((task) => (

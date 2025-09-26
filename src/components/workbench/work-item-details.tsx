@@ -43,10 +43,10 @@ const InfoCard = ({
 
 const SideNavItem = ({ icon, label, status, isActive = false, isSubItem = false, children }: any) => (
     <div className={isSubItem ? "pl-6" : ""}>
-        <div className={`flex items-center p-2 rounded-md cursor-pointer ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-gray-100'}`}>
+        <div className={`flex items-center p-2 rounded-md cursor-pointer ${isActive ? 'bg-accent/20 text-accent-foreground' : 'hover:bg-muted'}`}>
             {status === 'completed' && <Check className="h-4 w-4 text-green-500 mr-2" />}
             {status === 'inprogress' && <Circle className="h-4 w-4 text-blue-500 mr-2" />}
-            {status === 'pending' && <div className="h-4 w-4 border-2 border-gray-400 rounded-full mr-2" />}
+            {status === 'pending' && <div className="h-4 w-4 border-2 border-muted-foreground rounded-full mr-2" />}
             <span className="flex-1 text-sm">{label}</span>
         </div>
         {children}
@@ -88,7 +88,7 @@ export function WorkItemDetails({
       <div className="flex">
         {/* Left Actions Panel */}
         <div className="w-64 p-4 border-r">
-            <Button className="w-full justify-start bg-gray-700 hover:bg-gray-800 text-white mb-4">
+            <Button className="w-full justify-start bg-secondary hover:bg-secondary/80 text-secondary-foreground mb-4">
                 Actions
             </Button>
             <div className="space-y-1">
@@ -196,7 +196,7 @@ export function WorkItemDetails({
             </div>
             
             {activeTab === 'Submission' && (
-                <div className="bg-gray-50 p-4 mt-4 rounded-md border">
+                <div className="bg-muted/50 p-4 mt-4 rounded-md border">
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="font-bold">{submission.id} | {submission.insuredName}</h3>
                         <Button variant="ghost"><Plus className="h-4 w-4 mr-2" />Action</Button>

@@ -97,7 +97,7 @@ export function DataTable<TData, TValue>({
        <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="bg-slate-50">
+          <TableHeader className="bg-muted/50">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -129,8 +129,7 @@ export function DataTable<TData, TValue>({
                     key={row.id}
                     data-state={isSelected && "selected"}
                     className={cn(
-                      'data-[state=selected]:bg-accent',
-                      isSelected && 'bg-orange-100'
+                      'data-[state=selected]:bg-accent/30'
                     )}
                   >
                     {row.getVisibleCells().map((cell) => (

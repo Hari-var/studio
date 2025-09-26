@@ -24,9 +24,9 @@ export function WorkbenchTabs({ onTasksClick, activeTab, setActiveTab }: Workben
   return (
     <div className="flex items-center border-b">
         <Button variant="ghost" size="icon">
-            <Filter className="h-5 w-5 text-orange-600" />
+            <Filter className="h-5 w-5 text-primary" />
         </Button>
-        <Button variant="ghost" size="icon" className="text-orange-600 text-lg -ml-2">
+        <Button variant="ghost" size="icon" className="text-primary text-lg -ml-2">
             x
         </Button>
       <div className="flex space-x-4">
@@ -36,16 +36,16 @@ export function WorkbenchTabs({ onTasksClick, activeTab, setActiveTab }: Workben
             onClick={() => handleTabClick(tab)}
             className={`py-2 px-1 text-sm font-medium ${
               activeTab === tab
-                ? "border-b-2 border-orange-500 text-gray-900"
-                : "text-gray-500 hover:text-gray-700"
+                ? "border-b-2 border-primary text-foreground"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {tab}
             {tab === "My Submissions" && (
-              <Badge variant="destructive" className="ml-2 bg-orange-500 text-white">9</Badge>
+              <Badge className="ml-2 bg-primary text-primary-foreground">9</Badge>
             )}
              {tab === "Work Items" && (
-              <Badge variant="destructive" className="ml-2 bg-blue-500 text-white">4</Badge>
+              <Badge className="ml-2 bg-accent text-accent-foreground">4</Badge>
             )}
           </button>
         ))}
