@@ -15,6 +15,7 @@ import {
   Table as TanstackTable,
   RowSelectionState,
   Header,
+  Row,
 } from "@tanstack/react-table";
 
 import {
@@ -37,6 +38,7 @@ interface DataTableProps<TData, TValue> {
   rowSelection: RowSelectionState;
   setRowSelection: React.Dispatch<React.SetStateAction<RowSelectionState>>;
   setTable: (table: TanstackTable<TData>) => void;
+  onSummarize: (selectedRows: Row<TData>[]) => void;
 }
 
 function Filter({
@@ -64,6 +66,7 @@ export function DataTable<TData, TValue>({
   rowSelection,
   setRowSelection,
   setTable,
+  onSummarize,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -94,7 +97,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-       <DataTableToolbar table={table} />
+       <DataTableToolbar table={table} onSummarize={onSummarize} />
       <div className="rounded-md border">
         <Table>
           <TableHeader className="bg-muted/50">

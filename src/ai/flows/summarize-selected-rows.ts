@@ -19,7 +19,7 @@ const SummarizeSelectedRowsInputSchema = z.object({
 export type SummarizeSelectedRowsInput = z.infer<typeof SummarizeSelectedRowsInputSchema>;
 
 const SummarizeSelectedRowsOutputSchema = z.object({
-  summary: z.string().describe('A concise summary of the selected rows, highlighting key insights.'),
+  summary: z.string().describe('A concise summary of the selected rows, highlighting key insights. Format the output in markdown for readability.'),
 });
 export type SummarizeSelectedRowsOutput = z.infer<typeof SummarizeSelectedRowsOutputSchema>;
 
@@ -31,20 +31,21 @@ const prompt = ai.definePrompt({
   name: 'summarizeSelectedRowsPrompt',
   input: {schema: SummarizeSelectedRowsInputSchema},
   output: {schema: SummarizeSelectedRowsOutputSchema},
-  prompt: `You are an AI assistant tasked with summarizing data table rows.
+  prompt: `You are an expert AI assistant for P&C insurance underwriters. Your task is to summarize a selection of data table rows.
 
-  Given the following selected rows, generate a concise summary highlighting key insights.
+  Given the following selected rows, generate a concise summary highlighting key insights, trends, or potential red flags. The summary should be easy to read and formatted in markdown.
+
+  Focus on what an underwriter would find most important. For example:
+  - Are there any concentrations of risk (e.g., same producer, similar insureds)?
+  - Are there any submissions with a 'Declined' or 'Under Review' status that might need attention?
+  - What is the general mix of new vs. renewal business?
 
   Selected Rows:
-  {{#each rows}}
-  Row {{@index}}:
-  {{#each this}}
-  {{@key}}: {{this}}
-  {{/each}}
-  \n
-  {{/each}}
+  \`\`\`json
+  {{{jsonStringify rows}}}
+  \`\`\`
 
-  Summary:`,
+  Generate a summary in markdown format:`,
 });
 
 const summarizeSelectedRowsFlow = ai.defineFlow(
