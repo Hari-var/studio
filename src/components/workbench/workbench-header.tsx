@@ -6,7 +6,7 @@ export function WorkbenchHeader() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
-            <h1 className="text-xl font-bold text-foreground">Cyber Underwriting Workbench</h1>
+            <h1 className="text-xl font-bold text-foreground">Underwriting Workbench</h1>
             <nav className="hidden md:flex md:space-x-4">
               {navItems.map((item) => (
                 <a
